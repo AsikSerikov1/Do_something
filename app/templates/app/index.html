@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.min.css' %}">
+</head>
+<body>
+<div class="container">
+    
+<h1>There is my notes!</h1>
+
+<form action="/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+<br>
+{% for comment in comments %}
+
+<div class="alert alert-warning" style="padding: 10px;">
+    <h2>
+        {{ comment.title }}
+    </h2>
+    <hr>
+    <p>
+        {{ comment.text }}
+    </p>
+    <hr>
+    <p><strong>
+        Время поста: {{ comment.time }}
+    </strong></p>
+</div>
+
+{% endfor %}
+
+</div>
+</body>
+</html>
